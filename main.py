@@ -9,6 +9,7 @@ from helper import *
 
 folder = create_relative_path_if_not_exist('downloads')
 
+'''
 table_url = 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4'
 table = 'table_' + table_url.split('/')[-1] + '.xlsx'
 table_path = os.path.join(folder, table)
@@ -18,7 +19,11 @@ if not os.path.exists(table_path):
     books.to_excel(table_path)
 else:
     books = pd.read_excel(table_path, index_col=0, header=0)
+'''
 
+table = 'filtered_books.xlsx'
+
+books = pd.read_excel(table, index_col=0, header=0)
 
 for url, title, author, edition, isbn, category in tqdm(books[['OpenURL', 'Book Title', 'Author', 'Edition', 'Electronic ISBN', 'English Package Name']].values):
     new_folder = create_relative_path_if_not_exist(os.path.join(folder, category))
